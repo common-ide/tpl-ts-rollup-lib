@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "scripts/**/*",
+    "commitlint.config.js",
+    ".eslintrc.cjs",
+    ".prettierrc.js",
+    "jest.setup.ts",
+    "jest.config.ts",
+    "package.json",
+    "gulpfile.js",
+    "typedoc.config.js"
+  ]
+}

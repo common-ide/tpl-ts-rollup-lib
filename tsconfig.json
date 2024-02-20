@@ -1,0 +1,6 @@
+{
+  "extends": "__repo__(noCase)/typescript-config/library.json",
+  "include": ["src/**/*.ts", "src/**/*js", "config/**/*.ts", "tests", "mocks"],
+  "exclude": ["node_modules", "dist", "coverage", "docs", "example"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
