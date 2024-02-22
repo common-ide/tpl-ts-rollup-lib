@@ -1,0 +1,7 @@
+{
+  "name": "moddle",
+  "repo": "@ette",
+  "version": "0.1.0",
+  "description": "typescript library with rollup",
+  "templater": "https://github.com/common-ide/tpl-ts-rollup-lib.git"
+}
