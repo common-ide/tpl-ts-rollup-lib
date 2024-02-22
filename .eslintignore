@@ -4,3 +4,7 @@ coverage/
 node_modules
 
 src/**/*.scss
+
+config/
+./*.cjs
+
