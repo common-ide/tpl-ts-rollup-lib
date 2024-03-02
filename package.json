@@ -20,6 +20,7 @@
     "dev": "npm run clean && cross-env NODE_ENV=development rollup -c ./config/rollup.config.dev.ts --configPlugin @rollup/plugin-typescript --bundleConfigAsCjs --watch",
     "docs": "rimraf docs && npx typedoc",
     "analyzer": "cross-env ANALYZER=true npm run build",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
     "lint": "eslint src --fix --ext .ts,.tsx,.js,.jsx",
     "fmt": "prettier --write \"{src,tests,config}/**/*.{ts,tsx,js,jsx}\"",
     "test": "jest --coverage",
