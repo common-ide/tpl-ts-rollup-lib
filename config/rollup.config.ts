@@ -6,7 +6,7 @@ import { dts } from 'rollup-plugin-dts';
 import dayjs from 'dayjs';
 // rollup common plugin
 import rollupPlugins from './rollup.plugins';
-import { isDev, isAnalyzer } from './env';
+import { isDev, isAllFile, isAnalyzer } from './env';
 import pkg from '../package.json';
 
 // 大驼峰命名
@@ -18,7 +18,7 @@ const input = 'src/index.ts';
 const banner = `/*
 *
 * ${pkg.name} v${pkg.version}
-* Copyright (c) ${dayjs().format("YYYY-MM-DD")} ${pkg.author}
+* Copyright (c) ${dayjs().format("YYYY-MM-DD")} ${pkg.author || ''}
 * Released under the MIT License.
 *
 */`;
@@ -52,7 +52,7 @@ const dtsConfig = {
   plugins: [dts()],
 };
 
-export default isDev
+export default isDev && !isAllFile
   ? [UMD]
   : ([
       {
