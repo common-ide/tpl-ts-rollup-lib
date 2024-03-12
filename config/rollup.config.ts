@@ -1,13 +1,12 @@
 import { upperCamel } from '@skax/camel';
 import { type MergedRollupOptions } from 'rollup';
 // minify the Rollup bundle
-import terser from '@rollup/plugin-terser';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { dts } from 'rollup-plugin-dts';
 import dayjs from 'dayjs';
 // rollup common plugin
 import rollupPlugins from './rollup.plugins';
-import { isDev, isAnalyzer } from './env';
+import { isDev, isAllFile, isAnalyzer } from './env';
 import pkg from '../package.json';
 
 // 大驼峰命名
@@ -19,7 +18,7 @@ const input = 'src/index.ts';
 const banner = `/*
 *
 * ${pkg.name} v${pkg.version}
-* Copyright (c) ${dayjs().format("YYYY-MM-DD")} ${pkg.author}
+* Copyright (c) ${dayjs().format("YYYY-MM-DD")} ${pkg.author || ''}
 * Released under the MIT License.
 *
 */`;
@@ -53,7 +52,7 @@ const dtsConfig = {
   plugins: [dts()],
 };
 
-export default isDev
+export default isDev && !isAllFile
   ? [UMD]
   : ([
       {
@@ -123,7 +122,7 @@ export default isDev
         ],
         plugins: [
           ...rollupPlugins({ target: 'es5' }),
-          ...[terser(), isAnalyzer ? visualizer() : null].filter((plugin) => plugin !== null),
+          ...[isAnalyzer ? visualizer() : null].filter((plugin) => plugin !== null),
         ],
         // external: ['rxjs'] // 如果你不想第三方库被打包进来，而可以在外面引入，配合使用的话，可以在rollup.config.js中配置external
       },

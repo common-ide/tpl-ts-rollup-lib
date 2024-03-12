@@ -11,6 +11,8 @@ import replace from '@rollup/plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
+import terser from '@rollup/plugin-terser';
+// import typescript from '@rollup/plugin-typescript';
 
 import pkg from '../package.json';
 import { isDev } from './env';
@@ -34,6 +36,10 @@ export default (props: any) =>
     }),
     resolve(),
     commonjs({ extensions: ['.js', '.ts'] }),
+    // typescript({
+    //   sourceMap: isDev,
+    //   inlineSources: isDev
+    // }),
     replace({
       __VERSION__: pkg.version,
       preventAssignment: true,
@@ -43,5 +49,6 @@ export default (props: any) =>
       sourceMap: isDev,
       extract: false,
     }),
+    !isDev && terser(),
     !isDev && filesize(),
   ] as Plugin[];
